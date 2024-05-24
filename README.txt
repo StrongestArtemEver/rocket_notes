@@ -10,51 +10,60 @@
 
 Перед началом установки убедитесь, что у вас установлены следующие компоненты:
 
-1. [Rust](https://www.rust-lang.org/tools/install)
-2. [PostgreSQL](https://www.postgresql.org/download/)
-3. [Cargo](https://doc.rust-lang.org/cargo/getting-started/installation.html)
-4. [Git](https://git-scm.com/downloads)
+- [Rust](https://www.rust-lang.org/tools/install)
+- [PostgreSQL](https://www.postgresql.org/download/)
+- [Cargo](https://doc.rust-lang.org/cargo/getting-started/installation.html)
+- [Git](https://git-scm.com/downloads)
 
 ### Шаги по установке
 
 1. **Клонирование репозитория**
 
-   Склонируйте репозиторий проекта на ваш локальный компьютер:
+    Склонируйте репозиторий проекта на ваш локальный компьютер:
 
-   ```sh
-   git clone https://github.com/your-username/your-repo-name.git
-   cd your-repo-name
-   ```
+    ```sh
+    git clone https://github.com/your-username/your-repo-name.git
+    cd your-repo-name
+    ```
 
 2. **Создание и настройка базы данных**
 
-   Создайте базу данных PostgreSQL и настройте подключение к ней:
+    Создайте базу данных PostgreSQL и настройте подключение к ней:
 
-   ```sh
-   psql -U postgres -c "CREATE DATABASE your_db_name;"
-   ```
+    ```sh
+    psql -U postgres -c "CREATE DATABASE your_db_name;"
+    ```
 
 3. **Создание файла `.env` на основе `env-public`**
 
-   Скопируйте файл `env-public` в созданный вами `.env` и отредактируйте его с вашими реальными значениями:
+    Скопируйте файл `env-public` в `.env` и отредактируйте его с вашими реальными значениями:
 
-   ```sh
-   cp env-public .env
-   ```
+    ```sh
+    cp env-public .env
+    ```
 
-   Откройте файл `.env` и замените значения переменных окружения на реальные:
+    Откройте файл `.env` и замените значения переменных окружения на реальные:
 
-   ```env
-   DATABASE_URL=postgres://username:password@localhost/your_db_name
-   ```
+    ```env
+    DATABASE_URL=postgres://username:password@localhost/your_db_name
+    ```
 
 4. **Установка зависимостей**
 
-   Выполните команду для установки всех необходимых зависимостей:
+    Выполните команду для установки всех необходимых зависимостей:
 
-   ```sh
-   cargo build
-   ```
+    ```sh
+    cargo build
+    ```
+
+5. **Инициализация базы данных**
+
+    Выполните миграции для настройки схемы базы данных:
+
+    ```sh
+    diesel setup
+    diesel migration run
+    ```
 
 ## Запуск проекта
 
@@ -102,11 +111,11 @@ curl http://localhost:8000/api/notes
 - **Описание:** Создает новую заметку.
 - **Тело запроса:**
 
-  ```json
-  {
-    "content": "New note content"
-  }
-  ```
+    ```json
+    {
+      "content": "New note content"
+    }
+    ```
 
 #### Пример запроса
 
@@ -143,14 +152,14 @@ my_backend/
 
 ### Описание файлов
 
-- **Cargo.toml**: Файл конфигурации проекта, содержащий список зависимостей.
-- **src/main.rs**: Главный файл проекта, содержащий точку входа в приложение.
-- **src/models.rs**: Файл, содержащий определения моделей данных.
-- **src/routes.rs**: Файл, содержащий обработчики маршрутов.
-- **src/errors.rs**: Файл, содержащий обработчики ошибок.
-- **static/**: Директория, содержащая статические файлы (HTML, CSS, JS).
-- **.env**: Файл с конфиденциальными переменными окружения (не должен быть включен в систему контроля версий).
-- **env-public**: Пример файла переменных окружения (должен быть включен в систему контроля версий).
+- **Cargo.toml:** Файл конфигурации проекта, содержащий список зависимостей.
+- **src/main.rs:** Главный файл проекта, содержащий точку входа в приложение.
+- **src/models.rs:** Файл, содержащий определения моделей данных.
+- **src/routes.rs:** Файл, содержащий обработчики маршрутов.
+- **src/errors.rs:** Файл, содержащий обработчики ошибок.
+- **static/:** Директория, содержащая статические файлы (HTML, CSS, JS).
+- **.env:** Файл с конфиденциальными переменными окружения (не должен быть включен в систему контроля версий).
+- **env-public:** Пример файла переменных окружения (должен быть включен в систему контроля версий).
 
 ## Разработка и вклад
 
@@ -158,24 +167,28 @@ my_backend/
 
 1. **Создайте новую ветку для ваших изменений:**
 
-   ```sh
-   git checkout -b my-new-feature
-   ```
+    ```sh
+    git checkout -b my-new-feature
+    ```
 
 2. **Внесите изменения и сделайте коммит:**
 
-   ```sh
-   git add .
-   git commit -m "Add some feature"
-   ```
+    ```sh
+    git add .
+    git commit -m "Add some feature"
+    ```
 
 3. **Отправьте изменения в вашу ветку:**
 
-   ```sh
-   git push origin my-new-feature
-   ```
+    ```sh
+    git push origin my-new-feature
+    ```
 
 4. **Создайте Pull Request на GitHub.**
+
+### Контактная информация
+
+Если у вас возникли вопросы или предложения, пожалуйста, свяжитесь с нами по электронной почте: your-email@example.com.
 
 ## Лицензия
 
