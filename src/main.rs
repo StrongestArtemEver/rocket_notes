@@ -22,6 +22,6 @@ async fn rocket() -> _ {
 
     rocket::build()
         .manage(pool)
-        .mount("/api", routes![routes::get_notes, routes::create_note])
+        .mount("/api", routes::get_routes())
         .mount("/", FileServer::from(relative!("static")))
 }

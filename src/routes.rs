@@ -27,3 +27,7 @@ pub async fn create_note(pool: &State<PgPool>, note: Json<Note>) -> Result<Json<
         content: result.content,
     }))
 }
+
+pub fn get_routes() -> Vec<rocket::Route>{
+    routes![get_notes, create_note]
+}
